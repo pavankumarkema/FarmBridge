@@ -1,9 +1,24 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
+const rawBaseUrl =
+  import.meta.env.VITE_API_BASE_URL ||
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.DEV ? '/api' : 'https://farmbridge-g9x1.onrender.com/api');
+
+const formatBaseUrl = (url) => {
+  if (!url) return 'https://farmbridge-g9x1.onrender.com/api';
+  const trimmed = url.replace(/\/+$/, '');
+  if (trimmed.endsWith('/api') || trimmed === '/api') {
+    return trimmed;
+  }
+  return `${trimmed}/api`;
+};
+
+const API_BASE_URL = formatBaseUrl(rawBaseUrl);
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  withCredentials: true,
   headers: { 'Content-Type': 'application/json' },
 });
 
