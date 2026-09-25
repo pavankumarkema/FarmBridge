@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌾 AgriRoute (Agri-Market Intelligence)
+# 🌾 FramBridge (FramBridge)
 ### *Agricultural Logistics, Mandi Arbitrage & Net-Return Optimizer*
 
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black&style=for-the-badge)](https://reactjs.org/)
@@ -22,9 +22,9 @@
 
 ## 📌 Executive Summary
 
-**AgriRoute** is an agricultural logistics intelligence platform built to solve the **price discovery and transport cost gap** for farmers across South India (Telangana, Andhra Pradesh, and adjoining corridors).
+**FramBridge** is an agricultural logistics intelligence platform built to solve the **price discovery and transport cost gap** for farmers across South India (Telangana, Andhra Pradesh, and adjoining corridors).
 
-Traditional market reporting displays gross mandi rates without accounting for road distances, vehicle payload capacities, handling fees, or transit perishability. **AgriRoute calculates the true Take-Home Net Return**:
+Traditional market reporting displays gross mandi rates without accounting for road distances, vehicle payload capacities, handling fees, or transit perishability. **FramBridge calculates the true Take-Home Net Return**:
 
 $$\text{Net Return} = (\text{Mandi Wholesale Rate} \times \text{Crop Quantity}) - \text{Total Logistics Cost}$$
 
@@ -125,7 +125,7 @@ $$\text{Total Logistics Cost} = (\text{Distance} \times \text{Rate/km} \times \t
 ## 📁 Repository Structure
 
 ```
-agri-market-intelligence/
+frambridge/
 ├── client/                     # Frontend Application (React + Vite)
 │   ├── src/
 │   │   ├── components/         # Reusable UI & 3D components
@@ -205,8 +205,8 @@ agri-market-intelligence/
 
 ```bash
 # Clone the repository
-git clone https://github.com/venkydandi/agri-market-intelligence.git
-cd agri-market-intelligence
+git clone https://github.com/venkydandi/frambridge.git
+cd frambridge
 
 # Install server dependencies
 npm --prefix server install
@@ -225,7 +225,7 @@ cp .env.example .env
 
 ```env
 PORT=5000
-MONGODB_URI=mongodb://localhost:27017/agri-route
+MONGODB_URI=mongodb://localhost:27017/frambridge
 JWT_SECRET=your_super_secret_jwt_key_here
 CLIENT_URL=http://localhost:5173
 WEATHER_API_KEY=

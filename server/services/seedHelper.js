@@ -11,9 +11,14 @@ const CROPS = [
   { name: 'Wheat',     aliases: ['gehun', 'గోధుమ'],        unit: 'kg', category: 'grain'     },
   { name: 'Maize',     aliases: ['makka', 'మొక్కజొన్న'],  unit: 'kg', category: 'grain'     },
   { name: 'Cotton',    aliases: ['kapas', 'పత్తి'],         unit: 'kg', category: 'fiber'     },
+  { name: 'Groundnut', aliases: ['moongfali', 'వేరుశనగ'], unit: 'kg', category: 'oilseed'  },
+  { name: 'Sugarcane', aliases: ['ganna', 'చెరకు'],         unit: 'kg', category: 'cash_crop' },
+  { name: 'Tobacco',   aliases: ['tambakhu', 'పొగాకు'],     unit: 'kg', category: 'cash_crop' },
+  { name: 'Paddy',     aliases: ['dhan', 'వరి'],             unit: 'kg', category: 'grain'     },
+  { name: 'Soybean',   aliases: ['soya', 'సోయాబీన్'],       unit: 'kg', category: 'oilseed'  },
 ];
 
-// 16 Real APMC Markets across Telangana & Andhra Pradesh
+// 21 Real APMC Markets across Telangana & Andhra Pradesh
 const MARKETS = [
   {
     name: 'Bowenpally Market Yard',
@@ -159,20 +164,70 @@ const MARKETS = [
     contactInfo: '+91-866-2415800',
     operatingHours: '4:30 AM – 2:00 PM',
   },
+  {
+    name: 'Nellore APMC Rice Market',
+    location: { type: 'Point', coordinates: [79.9865, 14.4426] },
+    address: 'Vedayapalem, Nellore, Andhra Pradesh',
+    state: 'Andhra Pradesh',
+    district: 'Nellore',
+    contactInfo: '+91-861-2320100',
+    operatingHours: '5:00 AM - 3:00 PM',
+  },
+  {
+    name: 'Ongole Wholesale Market Yard',
+    location: { type: 'Point', coordinates: [80.0499, 15.5057] },
+    address: 'NH16 Bypass, Ongole, Andhra Pradesh',
+    state: 'Andhra Pradesh',
+    district: 'Prakasam',
+    contactInfo: '+91-8592-234400',
+    operatingHours: '5:30 AM - 2:00 PM',
+  },
+  {
+    name: 'Tirupati APMC Fruits & Vegetables',
+    location: { type: 'Point', coordinates: [79.4192, 13.6288] },
+    address: 'Renigunta Road, Tirupati, Andhra Pradesh',
+    state: 'Andhra Pradesh',
+    district: 'Chittoor',
+    contactInfo: '+91-877-2230100',
+    operatingHours: '4:30 AM - 1:30 PM',
+  },
+  {
+    name: 'Kakinada Rythu Bazaar',
+    location: { type: 'Point', coordinates: [82.2475, 16.9891] },
+    address: 'Main Road, Kakinada, Andhra Pradesh',
+    state: 'Andhra Pradesh',
+    district: 'East Godavari',
+    contactInfo: '+91-884-2361800',
+    operatingHours: '6:00 AM - 2:00 PM',
+  },
+  {
+    name: 'Vizag Rythu Bazaar',
+    location: { type: 'Point', coordinates: [83.2185, 17.6868] },
+    address: 'Dwaraka Nagar, Visakhapatnam, Andhra Pradesh',
+    state: 'Andhra Pradesh',
+    district: 'Visakhapatnam',
+    contactInfo: '+91-891-2711100',
+    operatingHours: '5:00 AM - 2:00 PM',
+  },
 ];
 
-// Base prices per crop (₹/kg) across all 16 markets
+// Base prices per crop (₹/kg) across all 21 markets
 const BASE_PRICES = {
-  Tomato:   [24, 25, 22, 20, 18, 19, 21, 18, 20, 21, 22, 19, 17, 26, 23, 27],
-  Onion:    [22, 23, 20, 18, 16, 17, 19, 17, 18, 19, 20, 17, 16, 21, 24, 22],
-  Potato:   [18, 19, 17, 15, 14, 15, 16, 14, 15, 16, 17, 15, 13, 20, 18, 21],
-  Brinjal:  [16, 17, 15, 13, 12, 14, 14, 12, 13, 14, 15, 13, 11, 18, 16, 19],
-  Chilli:   [95, 98, 90, 88, 80, 82, 105, 84, 86, 92, 88, 85, 78, 120, 92, 110],
-  Turmeric: [85, 88, 80, 78, 92, 82, 79, 74, 76, 78, 81, 75, 70, 90, 82, 94],
-  Rice:     [32, 33, 30, 28, 27, 29, 28, 27, 29, 30, 31, 35, 26, 31, 29, 34],
-  Wheat:    [25, 26, 24, 22, 21, 23, 22, 22, 23, 24, 25, 22, 21, 27, 25, 28],
-  Maize:    [21, 22, 19, 18, 17, 19, 18, 17, 18, 19, 20, 18, 16, 22, 20, 23],
-  Cotton:   [62, 64, 58, 60, 56, 59, 61, 55, 57, 58, 60, 56, 68, 65, 59, 66],
+  Tomato:    [24, 25, 22, 20, 18, 19, 21, 18, 20, 21, 22, 19, 17, 26, 23, 27, 24, 25, 23, 26, 28],
+  Onion:     [22, 23, 20, 18, 16, 17, 19, 17, 18, 19, 20, 17, 16, 21, 24, 22, 20, 21, 22, 21, 23],
+  Potato:    [18, 19, 17, 15, 14, 15, 16, 14, 15, 16, 17, 15, 13, 20, 18, 21, 19, 18, 20, 19, 22],
+  Brinjal:   [16, 17, 15, 13, 12, 14, 14, 12, 13, 14, 15, 13, 11, 18, 16, 19, 15, 16, 17, 18, 20],
+  Chilli:    [95, 98, 90, 88, 80, 82, 105, 84, 86, 92, 88, 85, 78, 120, 92, 110, 95, 98, 92, 94, 96],
+  Turmeric:  [85, 88, 80, 78, 92, 82, 79, 74, 76, 78, 81, 75, 70, 90, 82, 94, 86, 88, 85, 87, 89],
+  Rice:      [32, 33, 30, 28, 27, 29, 28, 27, 29, 30, 31, 35, 26, 31, 29, 34, 30, 32, 31, 33, 35],
+  Wheat:     [25, 26, 24, 22, 21, 23, 22, 22, 23, 24, 25, 22, 21, 27, 25, 28, 26, 27, 26, 28, 29],
+  Maize:     [21, 22, 19, 18, 17, 19, 18, 17, 18, 19, 20, 18, 16, 22, 20, 23, 21, 22, 20, 22, 24],
+  Cotton:    [62, 64, 58, 60, 56, 59, 61, 55, 57, 58, 60, 56, 68, 65, 59, 66, 63, 67, 62, 65, 64],
+  Groundnut: [65, 68, 62, 60, 58, 61, 67, 57, 59, 62, 63, 60, 72, 70, 64, 68, 71, 66, 63, 69, 70],
+  Sugarcane: [ 3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  3,  4,  3,  4,  4,  4,  3,  4,  4],
+  Tobacco:   [85, 88, 80, 78, 82, 84, 87, 76, 79, 81, 83, 78, 90, 95, 88, 92, 91, 89, 87, 93, 94],
+  Paddy:     [20, 21, 19, 18, 17, 18, 20, 18, 19, 20, 21, 22, 16, 22, 20, 23, 23, 22, 20, 24, 25],
+  Soybean:   [42, 44, 40, 38, 36, 38, 41, 37, 39, 40, 42, 39, 45, 46, 42, 47, 47, 45, 43, 48, 49],
 };
 
 const QUALITY_MULTIPLIERS = { A: 1.00, B: 0.85, C: 0.70 };

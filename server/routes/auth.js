@@ -7,7 +7,7 @@ const { protect } = require('../middleware/authMiddleware');
 const { isConnected } = require('../db');
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || 'agriRoute_dev_secret_change_in_production_2024';
+const JWT_SECRET = process.env.JWT_SECRET || 'frambridge_dev_secret_change_in_production_2024';
 
 // In-memory user store fallback
 const memoryUsers = new Map();
@@ -189,4 +189,26 @@ router.get('/me', protect, async (req, res) => {
   });
 });
 
+// Pre-seed admin user into in-memory store
+(async () => {
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash('password123', salt);
+    const adminUser = {
+      _id: 'user_admin',
+      name: 'Admin User',
+      phone: '9000000001',
+      email: 'admin@frambridge.com',
+      password: hashedPassword,
+      role: 'farmer',
+      createdAt: new Date(),
+    };
+    memoryUsers.set('admin@frambridge.com', adminUser);
+    memoryUsers.set('user_admin', adminUser);
+  } catch (e) {
+    console.error('Failed to init memory admin user:', e);
+  }
+})();
+
 module.exports = router;
+module.exports.memoryUsers = memoryUsers;

@@ -15,11 +15,20 @@ export default function Login() {
     setError('');
     setLoading(true);
     try {
-      const res = await api.post('/auth/login', form);
+      const res = await api.post('/auth/login', { email: form.email, password: form.password });
       login(res.data.token, res.data.user);
-      navigate('/compare');
+      navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please try again.');
+      if (!err.response) {
+        setError('Cannot connect to server. Please ensure the server is running.');
+      } else {
+        const msgs = err.response?.data?.errors;
+        if (msgs) {
+          setError(msgs.map((e) => e.msg).join(', '));
+        } else {
+          setError(err.response?.data?.message || 'Invalid email or password');
+        }
+      }
     } finally {
       setLoading(false);
     }
@@ -31,7 +40,7 @@ export default function Login() {
         <div className="text-center mb-8">
           <div className="text-5xl mb-3">🌾</div>
           <h1 className="text-2xl font-extrabold text-gray-800">Welcome back</h1>
-          <p className="text-gray-500 mt-1">Sign in to your AgriRoute account</p>
+          <p className="text-gray-500 mt-1">Sign in to your FramBridge account</p>
         </div>
 
         <div className="card">

@@ -1,12 +1,12 @@
 /**
- * Trilingual localization dictionary for AgriRoute
+ * Trilingual localization dictionary for FramBridge
  * Languages: English (en), Telugu (te), Hindi (hi)
  */
 
 export const TRANSLATIONS = {
   en: {
     // Brand & Nav
-    appName: 'AgriRoute',
+    appName: 'FramBridge',
     tagline: 'Empowering Farmers with Geospatial Data',
     navHome: 'Home',
     navCompare: '🔍 Compare Markets',
@@ -20,7 +20,7 @@ export const TRANSLATIONS = {
     heroTitlePre: 'Find the ',
     heroTitleHighlight: 'Most Profitable Market',
     heroTitlePost: ' for Your Crop',
-    heroSubtitle: 'AgriRoute calculates actual Net Return (Price − Transport Cost) across regional APMC mandis using real-time geospatial intelligence.',
+    heroSubtitle: 'FramBridge calculates actual Net Return (Price − Transport Cost) across regional APMC mandis using real-time geospatial intelligence.',
     compareNow: '🔍 Compare Markets Now',
     exploreMandis: 'Explore 16+ Mandis',
     marketsTracked: 'Mandis Tracked',

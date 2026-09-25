@@ -11,11 +11,19 @@ export default function Register() {
     password: '',
     confirmPassword: '',
     role: 'farmer',
+    district: '',
   });
   const [error, setError]   = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+
+  const DISTRICT_OPTIONS = [
+    'Hyderabad', 'Warangal', 'Karimnagar', 'Nizamabad', 'Khammam', 'Nalgonda',
+    'Mahbubnagar', 'Siddipet', 'Suryapet', 'Adilabad',
+    'Guntur', 'Krishna', 'East Godavari', 'West Godavari', 'Visakhapatnam (Vizag)',
+    'Nellore', 'Kurnool', 'Tirupati (Chittoor)', 'Ongole (Prakasam)', 'Kakinada'
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,9 +42,10 @@ export default function Register() {
         email: form.email,
         password: form.password,
         role: form.role,
+        district: form.district,
       });
       login(res.data.token, res.data.user);
-      navigate('/compare');
+      navigate('/dashboard');
     } catch (err) {
       const msgs = err.response?.data?.errors;
       if (msgs) {
@@ -55,7 +64,7 @@ export default function Register() {
         <div className="text-center mb-8">
           <div className="text-5xl mb-3">🌾</div>
           <h1 className="text-2xl font-extrabold text-gray-800">Create your account</h1>
-          <p className="text-gray-500 mt-1">Join AgriRoute and sell smarter</p>
+          <p className="text-gray-500 mt-1">Join FramBridge and sell smarter</p>
         </div>
 
         <div className="card">
@@ -120,6 +129,27 @@ export default function Register() {
                 required
                 autoComplete="email"
               />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">District (Optional)</label>
+              <select
+                className="input-field bg-white"
+                value={form.district}
+                onChange={(e) => setForm({ ...form, district: e.target.value })}
+              >
+                <option value="">Select your district</option>
+                <optgroup label="Andhra Pradesh">
+                  {DISTRICT_OPTIONS.slice(10).map((d) => (
+                    <option key={d} value={d}>{d}</option>
+                  ))}
+                </optgroup>
+                <optgroup label="Telangana">
+                  {DISTRICT_OPTIONS.slice(0, 10).map((d) => (
+                    <option key={d} value={d}>{d}</option>
+                  ))}
+                </optgroup>
+              </select>
             </div>
 
             <div className="grid grid-cols-2 gap-3">

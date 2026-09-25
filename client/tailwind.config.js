@@ -23,7 +23,7 @@ export default {
         peach: '#faecd8',
         blush: '#f9e6e6',
         
-        // AgriRoute brand palette
+        // FramBridge brand palette
         agri: {
           50:  '#f0fdf4',
           100: '#dcfce7',

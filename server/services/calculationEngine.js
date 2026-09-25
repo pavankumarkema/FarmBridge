@@ -1,5 +1,5 @@
 /**
- * Centralized Financial & Recommendation Calculation Engine for AgriRoute
+ * Centralized Financial & Recommendation Calculation Engine for FramBridge
  * Single source of truth for all logistics, revenue, net return, ranking, and reasoning calculations.
  */
 

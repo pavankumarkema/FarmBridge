@@ -28,8 +28,8 @@ async function connectDB() {
 
   // 2. Try local MongoDB instance (127.0.0.1:27017)
   try {
-    console.log('🔄 Checking local MongoDB instance (mongodb://127.0.0.1:27017/agri-route)...');
-    await mongoose.connect('mongodb://127.0.0.1:27017/agri-route', { serverSelectionTimeoutMS: 1500 });
+    console.log('🔄 Checking local MongoDB instance (mongodb://127.0.0.1:27017/frambridge)...');
+    await mongoose.connect('mongodb://127.0.0.1:27017/frambridge', { serverSelectionTimeoutMS: 1500 });
     console.log('✅ Connected to local MongoDB instance');
     isConnected = true;
     await autoSeedDatabase(Crop, Market, PriceRecord);

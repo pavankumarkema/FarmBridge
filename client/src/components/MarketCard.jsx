@@ -40,7 +40,7 @@ export default function MarketCard({ result, originLocation = { lat: 17.385, lng
   const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${originLat},${originLng}&destination=${marketLat},${marketLng}&travelmode=driving`;
 
   const handleShare = () => {
-    const text = `🌾 *AgriRoute Mandi Recommendation*\n\n` +
+    const text = `🌾 *FramBridge Mandi Recommendation*\n\n` +
       `*Crop:* ${cropName} (${quantity} kg, Grade ${quality})\n` +
       `*Recommended Mandi:* ${market.name} (${market.district})\n` +
       `*Mandi Price:* ₹${pricePerKg}/kg\n` +

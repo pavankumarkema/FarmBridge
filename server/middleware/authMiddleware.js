@@ -1,5 +1,8 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const { isConnected } = require('../db');
+
+const JWT_SECRET = process.env.JWT_SECRET || 'frambridge_dev_secret_change_in_production_2024';
 
 /**
  * Verifies JWT from Authorization header.
@@ -20,7 +23,18 @@ const protect = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET);
+
+    if (!isConnected()) {
+      const { memoryUsers } = require('../routes/auth');
+      const user = memoryUsers ? memoryUsers.get(decoded.userId) : null;
+      if (!user) {
+        return res.status(401).json({ message: 'Not authorized — user not found' });
+      }
+      req.user = user;
+      return next();
+    }
+
     // Attach user (without password) to request
     req.user = await User.findById(decoded.userId).select('-password');
     if (!req.user) {

@@ -52,14 +52,14 @@ export default function Footer() {
         {/* Machi-Style Massive Lowercase Typographic Watermark */}
         <div className="select-none text-center">
           <h1 className="text-[18vw] font-black text-gray-950 tracking-tighter leading-[0.8] hover:text-gray-900 transition-colors">
-            agriroute
+            frambridge
           </h1>
         </div>
 
         {/* Bottom copyright & legal */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-gray-400 font-medium border-t border-gray-100 pt-6">
           <div>
-            © {new Date().getFullYear()} AgriRoute Inc. All rights reserved.
+            © {new Date().getFullYear()} FramBridge Inc. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
             <span className="hover:text-gray-600 cursor-pointer">Privacy policy</span>

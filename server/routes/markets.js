@@ -175,6 +175,9 @@ router.get('/', async (req, res) => {
     }
 
     let filtered = [...fallbackMarkets];
+    if (state) {
+      filtered = filtered.filter((m) => m.state.toLowerCase().includes(state.toLowerCase()));
+    }
     if (district) {
       filtered = filtered.filter((m) => m.district.toLowerCase().includes(district.toLowerCase()));
     }

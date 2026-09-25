@@ -1,7 +1,7 @@
 {
-  "name": "agri-route-root",
+  "name": "frambridge-root",
   "version": "1.0.0",
-  "description": "AgriRoute Monorepo",
+  "description": "FramBridge Monorepo",
   "scripts": {
     "install:all": "cd server && npm install && cd ../client && npm install",
     "seed": "cd server && node scripts/seed.js",

@@ -215,7 +215,7 @@ export default function Compare() {
   const handleShareSummary = () => {
     if (!bestResult) return;
     const shareText =
-      `🌾 *AgriRoute Logistics & Profit Analysis*\n\n` +
+      `🌾 *FramBridge Logistics & Profit Analysis*\n\n` +
       `*Origin City:* ${location.label}\n` +
       `*Produce:* ${selectedCrop.name} (${form.quantity} kg, Grade ${form.quality})\n` +
       `*Recommended Mandi:* ${bestResult.market.name}\n` +
@@ -224,7 +224,7 @@ export default function Compare() {
       `*Gross Revenue:* ₹${bestResult.grossRevenue.toLocaleString('en-IN')}\n` +
       `*Est. Freight Cost:* ₹${bestResult.transportCost.toLocaleString('en-IN')}\n` +
       `*⭐ Take-Home Net Return:* ₹${bestResult.netReturn.toLocaleString('en-IN')}*\n\n` +
-      `Generated via AgriRoute — Intelligent Mandi Logistics.`;
+      `Generated via FramBridge — Intelligent Mandi Logistics.`;
 
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`, '_blank');
   };

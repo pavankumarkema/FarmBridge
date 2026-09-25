@@ -5,6 +5,7 @@ import Compare from './pages/Compare';
 import MarketsExplorer from './pages/MarketsExplorer';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import { LanguageProvider } from './context/LanguageContext';
 
@@ -26,11 +27,7 @@ function App() {
               path="/dashboard"
               element={
                 <ProtectedRoute>
-                  <div className="p-12 text-center text-gray-500 max-w-lg mx-auto">
-                    <div className="text-4xl mb-2">🚜</div>
-                    <h2 className="text-xl font-bold text-gray-800">Farmer Command Dashboard</h2>
-                    <p className="text-sm text-gray-400 mt-1">Saved calculations, crop logs, and mandi alerts will appear here.</p>
-                  </div>
+                  <Dashboard />
                 </ProtectedRoute>
               }
             />
@@ -45,7 +42,7 @@ function App() {
                     href="/"
                     className="mt-6 btn-pill-dark bg-gray-950 text-white font-bold py-2.5 px-6 rounded-full"
                   >
-                    Return to AgriRoute Home →
+                    Return to FramBridge Home →
                   </a>
                 </div>
               }

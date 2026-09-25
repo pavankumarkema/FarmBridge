@@ -9,6 +9,7 @@ export default function MarketsExplorer() {
   const { t } = useLanguage();
   const [markets, setMarkets] = useState([]);
   const [search, setSearch] = useState('');
+  const [selectedState, setSelectedState] = useState('All States');
   const [selectedDistrict, setSelectedDistrict] = useState('All');
   const [loading, setLoading] = useState(true);
 
@@ -24,9 +25,17 @@ export default function MarketsExplorer() {
       .finally(() => setLoading(false));
   }, []);
 
-  const districts = ['All', ...new Set(markets.map((m) => m.district).filter(Boolean))];
+  const stateOptions = ['All States', 'Andhra Pradesh', 'Telangana'];
+
+  const districts = ['All', ...new Set(
+    markets
+      .filter((m) => selectedState === 'All States' || m.state === selectedState)
+      .map((m) => m.district)
+      .filter(Boolean)
+  )];
 
   const filteredMarkets = markets.filter((m) => {
+    const matchesState = selectedState === 'All States' || m.state === selectedState;
     const matchesDistrict = selectedDistrict === 'All' || m.district === selectedDistrict;
     const q = search.toLowerCase().trim();
     const matchesSearch =
@@ -35,7 +44,7 @@ export default function MarketsExplorer() {
       m.district.toLowerCase().includes(q) ||
       m.state.toLowerCase().includes(q) ||
       m.address.toLowerCase().includes(q);
-    return matchesDistrict && matchesSearch;
+    return matchesState && matchesDistrict && matchesSearch;
   });
 
   return (
@@ -54,7 +63,7 @@ export default function MarketsExplorer() {
         </p>
       </div>
 
-      {/* Search & District Filter Controls */}
+      {/* Search & State/District Filter Controls */}
       <div className="card mb-8 p-4 bg-white/80 backdrop-blur-md border border-gray-200/80 rounded-2xl shadow-sm space-y-4">
         <div className="relative">
           <Search className="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" />
@@ -65,6 +74,40 @@ export default function MarketsExplorer() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+        </div>
+
+        {/* State Filter Tabs */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none text-xs border-b border-gray-100 pb-3">
+          <span className="text-gray-400 font-semibold uppercase text-[10px] whitespace-nowrap mr-1">
+            State:
+          </span>
+          {stateOptions.map((s) => {
+            const count = s === 'All States' ? markets.length : markets.filter((m) => m.state === s).length;
+            const isActive = selectedState === s;
+            return (
+              <button
+                key={s}
+                onClick={() => {
+                  setSelectedState(s);
+                  setSelectedDistrict('All');
+                }}
+                className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all ${
+                  isActive
+                    ? 'bg-emerald-600 text-white shadow-sm'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                <span>{s}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-extrabold ${
+                    isActive ? 'bg-white/20 text-white' : 'bg-gray-200 text-gray-700'
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* District Filter Chips */}

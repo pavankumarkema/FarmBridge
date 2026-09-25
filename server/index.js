@@ -48,7 +48,7 @@ const PORT = process.env.PORT || 5000;
 async function start() {
   await connectDB();
   app.listen(PORT, () => {
-    console.log(`🚀  AgriRoute server running on http://localhost:${PORT}`);
+    console.log(`🚀  FramBridge server running on http://localhost:${PORT}`);
   });
 }
 

@@ -13,7 +13,7 @@ const {
 const { compareInMemory } = require('../services/compareService');
 const { getDeterministicHistoricalPrice, BASE_PRICES } = require('../services/seedHelper');
 
-describe('AgriRoute Recommendation & Calculation Engine Tests', () => {
+describe('FramBridge Recommendation & Calculation Engine Tests', () => {
   // Test Case 1: quantity = 2000 kg, vehicle capacity = 1500 kg -> trips = 2
   test('Test Case 1: 2000 kg with 1500 kg capacity requires 2 trips', () => {
     const trips = calculateTripsRequired(2000, 1500);
